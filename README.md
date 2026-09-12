@@ -295,6 +295,42 @@ with root on the bridge has the key.
 Without `--with-tls`, the service traffic crosses the internet in plain HTTP and
 anyone on the path can read it, credentials included.
 
+## Troubleshoot
+
+### PPP error
+
+This issue can occur when either the chapkey is invalid or with pretty old distros that don't load properly the PPP line discipline modules. 
+
+Run these commands to update the modules and make them load properly at restart: 
+
+```
+sudo apt-get update
+sudo apt-get install -y ppp linux-modules-extra-$(uname -r)
+sudo modprobe ppp_generic
+sudo modprobe ppp_async
+echo -e "ppp_generic\nppp_async" | sudo tee /etc/modules-load.d/ppp.conf
+```
+
+### dnsmasq failed to start
+
+This issue might occur mostly on ubuntu images: 
+
+check if dnsmasq is active: 
+
+```
+sudo systemctl is-active
+```
+
+if "failed" or "failure": reinstall randnetpi3
+
+```
+sudo python3 install_randnetpi3.py --randnet-server dd.randnetdd.ch --with-tls --with-wrp --fix-dnsmasq-conflicts
+```
+
+this second install will detect the dnsmasq issue and purge the ubuntu-fan dependency conflict.
+
+if you have the same symptoms as dnsmasq failed to start but is actually active. it might also be the modem USB that didn't initialyze properly when plugged it. Unplug & replug directly the usb modem to hard reset it.
+
 ## Disclaimer
 
 This is an independent, fan-made interoperability project. It is not affiliated
