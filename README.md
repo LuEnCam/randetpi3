@@ -323,3 +323,6 @@ are responsible for complying with the laws that apply to you.
 - tenox7 for its Web Rendering Proxy: https://github.com/tenox7/wrp 
 - Kazade for the dreampi: https://github.com/kazade/dreampi
 
+## License
+
+This project is licensed under the [MIT License](LICENSE).

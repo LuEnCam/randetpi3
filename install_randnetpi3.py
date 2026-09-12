@@ -41,10 +41,6 @@ PROXY_UNIT_DEST = "/etc/systemd/system/" + PROXY_UNIT
 PROXY_SERVICE = "randnet-proxy"
 PROXY_PORT_DEFAULT = 8080
 PROXY_MAX_BYTES_DEFAULT = 32768
-
-# TLS tunnel out to the Randnet server. The instance name has to match the
-# config file's name: Ubuntu and Debian ship no stunnel4.service, only a
-# stunnel@.service template that runs /etc/stunnel/<instance>.conf.
 STUNNEL_SOURCE = "stunnel-randnet.conf"
 STUNNEL_DEST = "/etc/stunnel/randnet.conf"
 STUNNEL_SERVICE = "stunnel@randnet"
@@ -53,10 +49,6 @@ TLS_PORT_DEFAULT = 443
 TUNNEL_PORT_DEFAULT = 8443
 PPP_OPTIONS = "/etc/ppp/options"
 DNSMASQ_DROPIN = "/etc/dnsmasq.d/randnetpi3.conf"
-# Ships a dnsmasq drop-in containing bind-interfaces, which dnsmasq refuses to
-# combine with the bind-dynamic we need for ppp0. Nothing depends on it and Fan
-# networking is a container overlay feature, so on a dial-up bridge it is only
-# ever in the way.
 UBUNTU_FAN_PACKAGE = "ubuntu-fan"
 
 DOCKER_DAEMON_JSON = "/etc/docker/daemon.json"
